@@ -1,10 +1,10 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const app = express();
 
 const usersRoutes = require("./routes/users");
-
-const app = express();
+const booksRoutes = require("./routes/books");
 
 mongoose
   .connect(
@@ -34,5 +34,6 @@ app.use((req, res, next) => {
 });
 
 app.use("/api/user", usersRoutes);
+app.use("/api/books", booksRoutes);
 
 module.exports = app;
