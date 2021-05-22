@@ -2,7 +2,6 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const app = express();
-
 const usersRoutes = require("./routes/users");
 const booksRoutes = require("./routes/books");
 const reviewsRoutes = require("./routes/reviews");
@@ -11,7 +10,8 @@ mongoose
   .connect(
     "mongodb+srv://Tomek:Zfy08qmsNof8C65I@cluster1.nvnfg.mongodb.net/book-review?retryWrites=true&w=majority", {
     useUnifiedTopology: true,
-    useNewUrlParser: true}
+    useNewUrlParser: true
+  }
   )
   .then(() => {
     console.log("Connected to database!");
