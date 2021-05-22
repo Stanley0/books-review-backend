@@ -6,7 +6,15 @@ const bookSchema = mongoose.Schema({
   author: { type: String, required: true },
   description: { type: String },
   image: { type: { buffer: Buffer, mimetype: String }, required: false },
-  review: { type: mongoose.Schema.Types.ObjectId, ref: "Review", }
+  rate: { type: Number},
+  // review: { type: mongoose.Schema.Types.ObjectId, ref: "Review", }
 }, { timestamps: true });
+
+
+
+
+
+
+
 
 module.exports = mongoose.model("Book", bookSchema);

@@ -5,10 +5,13 @@ const app = express();
 
 const usersRoutes = require("./routes/users");
 const booksRoutes = require("./routes/books");
+const reviewsRoutes = require("./routes/reviews");
 
 mongoose
   .connect(
-    "mongodb+srv://Tomek:Zfy08qmsNof8C65I@cluster1.nvnfg.mongodb.net/book-review?retryWrites=true&w=majority"
+    "mongodb+srv://Tomek:Zfy08qmsNof8C65I@cluster1.nvnfg.mongodb.net/book-review?retryWrites=true&w=majority", {
+    useUnifiedTopology: true,
+    useNewUrlParser: true}
   )
   .then(() => {
     console.log("Connected to database!");
@@ -35,5 +38,6 @@ app.use((req, res, next) => {
 
 app.use("/api/user", usersRoutes);
 app.use("/api/books", booksRoutes);
+app.use("/api/reviews", reviewsRoutes);
 
 module.exports = app;
