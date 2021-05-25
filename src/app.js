@@ -6,11 +6,14 @@ const usersRoutes = require("./routes/users");
 const booksRoutes = require("./routes/books");
 const reviewsRoutes = require("./routes/reviews");
 
+
+const dbURI = "mongodb+srv://Tomek:Zfy08qmsNof8C65I@cluster1.nvnfg.mongodb.net/book-review?retryWrites=true&w=majority"
+
 mongoose
-  .connect(
-    "mongodb+srv://Tomek:Zfy08qmsNof8C65I@cluster1.nvnfg.mongodb.net/book-review?retryWrites=true&w=majority", {
+  .connect( dbURI, {
     useUnifiedTopology: true,
-    useNewUrlParser: true
+    useNewUrlParser: true,
+    useCreateIndex: true
   }
   )
   .then(() => {
@@ -41,3 +44,5 @@ app.use("/api/books", booksRoutes);
 app.use("/api/reviews", reviewsRoutes);
 
 module.exports = app;
+
+

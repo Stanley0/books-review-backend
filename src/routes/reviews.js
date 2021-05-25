@@ -2,16 +2,17 @@ const express = require("express");
 const ReviewModel = require("../models/review");
 const router = express.Router();
 const { ObjectId } = require("bson");
+const checkAuth = require("../middleware/check-auth");
 
 
-router.post("/", async (req, res, next) => {
-
+router.post("/:bookId", checkAuth, async (req, res, next) => {
+    
     const review = new ReviewModel({
         content: req.body.content,
         rate: req.body.rate,
-        bookId: new ObjectId("60a91dd7bd37ee4f4ca6e949"),
-        userNickname: "Jan Matejko",
-        userId: new ObjectId("60a402301e12ce3e649fa38b"),
+        bookId: new ObjectId(req.params.bookId),
+        userNickname: req.locals.userData.nickname,
+        userId: new ObjectId(req.locals.userData.userId),
     });
 
     try {
